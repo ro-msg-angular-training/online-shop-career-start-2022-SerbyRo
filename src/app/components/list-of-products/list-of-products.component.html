@@ -1,0 +1,31 @@
+<p>Showing a new list of products!</p>
+
+
+<body>
+<main>
+  <div class="card" >
+    <div class="card__title" >
+        <a href="#"></a>
+      <h3>The new products</h3>
+    </div>
+    <div *ngFor = "let product of products">
+
+      <div class="card__body">
+            <h1>{{product.name}}</h1>
+            <p class="sub">{{product.category}}</p>
+            <p class="price">${{product.price}}</p>
+          <div class="image">
+            <img src="{{product.image}}" alt=""  width="100px">
+          </div>
+      </div>
+      <div class="card__footer">
+        <div class="action">
+          <button type="button"><a routerLink="/productDetail/{{product.id}}">Show product characterisitics</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+
+
