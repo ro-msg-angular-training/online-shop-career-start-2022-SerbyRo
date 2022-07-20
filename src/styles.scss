@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+
+body { margin: 0; font-family: Elephant, "Helvetica Neue", sans-serif;
+
+    background-image: url("https://deseneledublate.com/wp-content/uploads/2021/02/phineas-si-ferb-sezonul-2-dublat-in-romana.jpg");
+
+    background-repeat: no-repeat;
+
+    background-size: cover
+
+}
+
+button {
+    background-color: purple; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+  a{
+    color : orangered;
+  }
+
+  p{
+    color: blue;
+  }
+
+  td{
+    color:brown;
+  }

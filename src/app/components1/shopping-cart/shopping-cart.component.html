@@ -1,0 +1,28 @@
+<p>shopping-cart works!</p>
+
+<br><br>
+<body>
+
+<div>
+    <table class="table">
+      <thead class='thead'>
+      <tr>
+        <th>Order number</th>
+        <th>ID</th>
+        <th>Quantity</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let cartProduct of cartProducts;index as i">
+        <td>{{i+1}}</td>
+        <td>{{cartProduct.productId}}</td>
+        <td>{{cartProduct.quantity}}</td>
+      </tr>
+      </tbody>
+    </table>
+  <div class="card__footer">
+    <div class="action">
+      <button type="button" (click)="checkout()">Make Checkout</button>
+    </div>
+  </div>
+</div>

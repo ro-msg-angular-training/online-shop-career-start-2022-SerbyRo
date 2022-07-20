@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { DisplayProductComponent } from './components/display-product/display-product.component';
-import {ListOfProductsComponent} from './components/list-of-products/list-of-products.component';
-
+import { HomeComponent } from './components1/home/home.component';
+import { ProductDetailComponent } from './components1/product-detail/product-detail.component';
+import { ListProductDetailComponent } from './components1/list-product-detail/list-product-detail.component'; 
+import { ShoppingCartComponent } from './components1/shopping-cart/shopping-cart.component';
 const routes: Routes = [
 {path:'' , component: HomeComponent},
-{path:'display-product/:id', component: DisplayProductComponent},
-{path: 'list-of-products', component: ListOfProductsComponent}
+{path: 'ProductsList', component: ListProductDetailComponent},
+{path: 'ProductDetail', component:ProductDetailComponent},
+{path: 'ShoppingCart', component: ShoppingCartComponent},
+{path: 'ProductDetail/:id' ,component: ProductDetailComponent}
 ];
 
 @NgModule({
