@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Product from '../Types/Product';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { ProductService } from '../product.service';
 })
 export class ProductDetailComponent implements OnInit {
 
-  constructor(private productService: ProductService, private route: ActivatedRoute) {
+  constructor(private productService: ProductService, private route: ActivatedRoute,private router: Router) {
   }
 
   product: Product = {
@@ -41,5 +41,9 @@ export class ProductDetailComponent implements OnInit {
         window.alert(this.product.name + ' with id = ' + id + ' was deleted!');
       })
     };
+
+    // editProduct(): void {
+    //   this.router.navigate(['/EditProduct', this.product.id]);
+    // }
 
 }

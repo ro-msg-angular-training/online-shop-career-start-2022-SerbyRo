@@ -28,6 +28,14 @@ export class ProductService {
     return this.http.delete<void>(`${'http://localhost:3000'}/products/${id}`);
   }
 
+  saveProduct(product: Product){
+    return this.http.post(`${'http://localhost:3000'}/products`,product);
+  }
+
+  updateProduct(product:Product, id: number){
+      return this.http.put(`${'http://localhost:3000'}/products/${id}`,product);
+  }
+
   addToCart(id: number): void{
       let index = this.cartProducts.findIndex(
         cartProducts => cartProducts.productId === id

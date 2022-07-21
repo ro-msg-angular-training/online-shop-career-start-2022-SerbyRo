@@ -1,20 +1,25 @@
-
-
 <main>
-    <div class="card" >
-            <a href="#"></a>
-           <h3>New products</h3>
-      <div *ngFor = "let product of products">
-            <h1>{{product.category}}</h1>
-            <p class="sub">{{product.name}}</p>
-            <p class="price">${{product.price}}</p>
-          <div class="image">
-            <img src="{{product.image}}" alt=""  width="300px">
-          </div>
-        <div class="action">
-          <button type="button"><a [routerLink]="['/','ProductDetail', product.id]">View details of the product</a></button>
-        </div>
+  <div class="card">
+    <a href="#"></a>
+    <h3>New products</h3>
+    <br>
+    <br>
+    <br>
+    <button class="edit" type="button" [routerLink] = "['/AddProduct']">Add this product</button>
+    <div *ngFor="let product of products">
+      <h1>{{ product.category }}</h1>
+      <p class="sub">{{ product.name }}</p>
+      <p class="price">${{ product.price }}</p>
+      <div class="image">
+        <img src="{{ product.image }}" alt="" width="300px" />
+      </div>
+      <div class="action">
+        <button type="button">
+          <a [routerLink]="['/', 'ProductDetail', product.id]"
+            >View details of the product</a
+          >
+        </button>
       </div>
     </div>
-  </main>
- 
+  </div>
+</main>
