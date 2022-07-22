@@ -13,12 +13,12 @@
           </div>
       </div>
         <div class="action">
-          <button class="add" type="button" [disabled]="!canAddToCart" (click)="addToCart()">Add to cart</button>
+          <button class="add" type="button" [disabled]="!canAddToCart" (click)="addToCart()" (click)="onLeave()">Add to cart</button>
           <br>
           <br>
-          <button class="remove" type="button" [disabled] = "!canEditProduct" (click)="deleteProdus(product.id)">Delete product from the list</button>
+          <button class="remove" type="button" [disabled] = "!canEditProduct" (click)="deleteProdus(product.id)" (click)="onLeave()">Delete product from the list</button>
           <br><br>
-          <button class="edit" type="button" [disabled] ="!canEditProduct" [routerLink] = "['/EditProduct', product.id]">Edit this product</button>
+          <button class="edit" type="button" [disabled] ="!canEditProduct" [routerLink] = "['/EditProduct', product.id]" (click)="onLeave()">Edit this product</button>
         </div>
     </div>
   </main>

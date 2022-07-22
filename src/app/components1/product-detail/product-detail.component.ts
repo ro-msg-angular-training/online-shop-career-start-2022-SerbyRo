@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import Product from '../Types/Product';
+import Product from '../Types/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { AuthentificationService } from '../authentification.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
+
+  productSubscription: Subscription | undefined;
 
   constructor(private productService: ProductService, private route: ActivatedRoute,private router: Router,private authService: AuthentificationService) {
   }
@@ -22,17 +25,19 @@ export class ProductDetailComponent implements OnInit {
     image: '',
   };
 
-  canEditProduct = this.authService.userHasRole('admin');
-  canAddToCart = this.authService.userHasRole('customer');
   
+  canEditProduct: boolean | undefined;
+  canAddToCart: boolean | undefined;
 
   ngOnInit(): void {
     this.get();
+    this.canEditProduct = this.authService.userHasRole('admin');
+    this.canAddToCart = this.authService.userHasRole('customer');
   }
 
   get(): void{
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.productService.findOneProduct(id).subscribe(data => {this.product = data;});
+    const id = parseInt(this.route.snapshot.paramMap.get('id') as string);
+    this.productSubscription = this.productService.findOneProduct(id).subscribe(data => {this.product = data;});
   }
 
   addToCart(): void {
@@ -46,8 +51,8 @@ export class ProductDetailComponent implements OnInit {
       })
     };
 
-    // editProduct(): void {
-    //   this.router.navigate(['/EditProduct', this.product.id]);
-    // }
 
+  onLeave(){
+    this.productSubscription?.unsubscribe();
+  }
 }

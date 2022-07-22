@@ -8,14 +8,20 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { HttpClient } from '@angular/common/http';
-import Product from '../Types/Product';
+import Product from '../Types/product';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment';
+import { first } from 'rxjs';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
   styleUrls: ['./edit-product.component.scss'],
 })
 export class EditProductComponent implements OnInit {
+
+  productSubscription : Subscription | undefined;
+
   product: Product = {
     id: 0,
     description: '',
@@ -44,19 +50,14 @@ export class EditProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.http.get<Product>(`${'http://localhost:3000'}/products/${this.id}`).subscribe((data)=>{
+    this.productService.findOneProduct(this.id).subscribe((data)=>{
       this.product = data;
       this.profileForm.patchValue(this.product);
-    })
+    });
   }
 
   saveChanges() {
-    // const product1: Product = {
-    //   id: this.id,
-    //   category:this.profileForm.value.category || '',
-    //   description: this.profileForm.value.description || '',
-
-    // };
+    
     if (this.profileForm.valid)
     {
       this.product.name = this.profileForm.value.name ?? '';
@@ -64,8 +65,7 @@ export class EditProductComponent implements OnInit {
     this.product.description = this.profileForm.value.description ?? '';
     this.product.price = this.profileForm.value.price ?? 0;
     //this.product.image = this.profileForm.value.image ?? '';
-    this.http
-      .put(`${'http://localhost:3000'}/products/${this.id}`, this.product)
+    this.productSubscription = this.productService.updateProduct(this.product,this.product.id)
       .subscribe(()=>{
         window.alert("The product was added!");
         this.router.navigateByUrl('/ProductsList');
@@ -78,5 +78,9 @@ export class EditProductComponent implements OnInit {
 
   cancel() {
     this.location.back();
+  }
+
+  onLeave(){
+    this.productSubscription?.unsubscribe();
   }
 }

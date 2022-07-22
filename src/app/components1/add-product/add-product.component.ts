@@ -8,7 +8,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { HttpClient } from '@angular/common/http';
-import Product from '../Types/Product';
+import Product from '../Types/product';
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-product',
@@ -44,19 +44,9 @@ export class AddProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.http.get<Product>(`${'http://localhost:3000'}/products`).subscribe((data)=>{
-    //   this.product = data;
-    //   this.profileForm.patchValue(this.product);
-    //}//);
+    
   }
-
   saveChanges() {
-    // const product1: Product = {
-    //   id: this.id,
-    //   category:this.profileForm.value.category || '',
-    //   description: this.profileForm.value.description || '',
-
-    // };
     if (this.profileForm.valid)
     {
       this.product.name = this.profileForm.value.name ?? '';
@@ -64,8 +54,7 @@ export class AddProductComponent implements OnInit {
     this.product.description = this.profileForm.value.description ?? '';
     this.product.price = this.profileForm.value.price ?? 0;
     this.product.image = this.profileForm.value.image ?? '';
-    this.http
-      .post('http://localhost:3000/products/', this.product)
+    this.productService.saveProduct(this.product)
       .subscribe(()=>{
         
         this.router.navigateByUrl('/ProductsList');

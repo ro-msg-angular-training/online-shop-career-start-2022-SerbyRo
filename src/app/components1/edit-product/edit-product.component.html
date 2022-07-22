@@ -19,12 +19,12 @@
   <br />
   <br />
 
-  <button type="submit" (click)="saveChanges()">
+  <button type="submit" (click)="saveChanges()" (click)="onLeave()">
     Submit changes
   </button>
 
   <br>
   <br><br>
 
-  <button (click)="cancel()">Cancel changes</button>
+  <button (click)="cancel()" (click)="onLeave()">Cancel changes</button>
 </form>

@@ -1,8 +1,9 @@
 import { Injectable,EventEmitter,Output } from '@angular/core';
-import Product from './Types/Product';
+import Product from './Types/product';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Order } from '../order';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,23 +18,23 @@ export class ProductService {
   @Output() event = new EventEmitter();
 
   findOneProduct(id: number): Observable<Product> {
-    return this.http.get<Product>(`${'http://localhost:3000'}/products/${id}`);
+    return this.http.get<Product>(environment.url + `/products/${id}`);
   }
 
   getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${'http://localhost:3000'}/products`);
+    return this.http.get<Product[]>(`${environment.url}/products`);
   }
 
   deleteProduct(id: number): Observable<void> {
-    return this.http.delete<void>(`${'http://localhost:3000'}/products/${id}`);
+    return this.http.delete<void>(`${environment.url}/products/${id}`);
   }
 
   saveProduct(product: Product){
-    return this.http.post(`${'http://localhost:3000'}/products`,product);
+    return this.http.post(`${environment.url}/products`,product);
   }
 
   updateProduct(product:Product, id: number){
-      return this.http.put(`${'http://localhost:3000'}/products/${id}`,product);
+      return this.http.put(`${environment.url}/products/${id}`,product);
   }
 
   addToCart(id: number): void{
@@ -49,8 +50,8 @@ export class ProductService {
   }
 
   checkout(){
-    console.log("Am ajuns");
-    return this.http.post(`${'http://localhost:3000'}/orders`, {customer:"doej", products: this.cartProducts}, {responseType: 'text'})
+    
+    return this.http.post(`${environment.url}/orders`, {customer:"doej", products: this.cartProducts}, {responseType: 'text'})
   }
 
   getOrders(): Order[] {

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import { catchError,Observable,of,tap } from 'rxjs';
-import Product from './Types/Product';
+import Product from './Types/product';
 import { User, UserRoles } from './Types/user';
-import { LoginCredential } from './Types/loginCredentials';
+import { LoginCredential } from './Types/login-credentials';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +17,7 @@ export class AuthentificationService {
   redirectUrl: string | null = null;
 
   login(username:string, password:string): Observable<User>{
-    return this.http.post<User>(`${'http://localhost:3000'}/login`, { username, password })
+    return this.http.post<User>(`${environment.url}/login`, { username, password })
     .pipe(tap((user)=>(this.user = user)));
   }
 

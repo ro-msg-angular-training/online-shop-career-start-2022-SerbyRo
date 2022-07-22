@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Product from '../Types/Product';
+import Product from '../Types/product';
 import { Order } from 'src/app/order';
 import { ProductService } from '../product.service';
 import { AuthentificationService } from '../authentification.service';
@@ -19,6 +19,6 @@ export class ShoppingCartComponent implements OnInit {
   }
   checkout(): void {
     window.alert('Completed order!');
-    this.productService.checkout().subscribe(() => {});
+    this.productService.checkout().subscribe();
   }
 }
