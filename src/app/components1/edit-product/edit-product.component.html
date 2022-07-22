@@ -1,0 +1,30 @@
+<title>Complete product form!</title>
+
+<form [formGroup]="profileForm">
+  <label for="name">Name of the product</label>
+  <input id="name" type="text" formControlName="name" />
+  <br />
+  <br />
+  <label for="category">Category of the product</label>
+  <input id="category" type="text" formControlName="category" />
+  <br />
+  <br />
+  <label for="description">Description of the product</label>
+  <input id="description" type="text" formControlName="description" />
+  <br />
+  <br />
+  <label for="price">Price of the product</label>
+  <input id="price" type="number" formControlName="price" />
+
+  <br />
+  <br />
+
+  <button type="submit" (click)="saveChanges()" (click)="onLeave()">
+    Submit changes
+  </button>
+
+  <br>
+  <br><br>
+
+  <button (click)="cancel()" (click)="onLeave()">Cancel changes</button>
+</form>

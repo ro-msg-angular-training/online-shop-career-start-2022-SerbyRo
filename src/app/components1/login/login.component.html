@@ -1,0 +1,20 @@
+<title>Login page</title>
+
+<form id="login-form" [formGroup]="loginForm">
+    <span id="title">
+        Hello! Please log in!
+    </span>
+    <br>
+    <br>
+    <label for="username">Username: </label>
+    <input id="username" type="text" formControlName="username"/>
+    <br>
+    <br>
+    <label for="username">Password: </label>
+    <input id="username" type="password" formControlName="password"/>
+
+    <br><br>
+
+    <button id="login-button" (click)="logIn()">Login my friend</button>
+
+</form>
