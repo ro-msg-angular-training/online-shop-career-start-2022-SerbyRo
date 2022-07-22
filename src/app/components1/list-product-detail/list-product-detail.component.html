@@ -5,7 +5,7 @@
     <br>
     <br>
     <br>
-    <button class="edit" type="button" [routerLink] = "['/AddProduct']">Add this product</button>
+    <button class="edit" type="button" [disabled]="!canEditProducts" [routerLink] = "['/AddProduct']">Add this product</button>
     <div *ngFor="let product of products">
       <h1>{{ product.category }}</h1>
       <p class="sub">{{ product.name }}</p>

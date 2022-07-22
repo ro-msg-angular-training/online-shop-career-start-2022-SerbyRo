@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Product from '../Types/Product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
-
+import { AuthentificationService } from '../authentification.service';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -10,7 +10,7 @@ import { ProductService } from '../product.service';
 })
 export class ProductDetailComponent implements OnInit {
 
-  constructor(private productService: ProductService, private route: ActivatedRoute,private router: Router) {
+  constructor(private productService: ProductService, private route: ActivatedRoute,private router: Router,private authService: AuthentificationService) {
   }
 
   product: Product = {
@@ -21,6 +21,10 @@ export class ProductDetailComponent implements OnInit {
     category: '',
     image: '',
   };
+
+  canEditProduct = this.authService.userHasRole('admin');
+  canAddToCart = this.authService.userHasRole('customer');
+  
 
   ngOnInit(): void {
     this.get();

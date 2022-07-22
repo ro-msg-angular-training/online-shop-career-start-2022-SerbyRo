@@ -12,6 +12,7 @@ import { EditProductComponent } from './components1/edit-product/edit-product.co
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddProductComponent } from './components1/add-product/add-product.component';
+import { LoginComponent } from './components1/login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AddProductComponent } from './components1/add-product/add-product.compo
     ShoppingCartComponent,
     EditProductComponent,
     AddProductComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

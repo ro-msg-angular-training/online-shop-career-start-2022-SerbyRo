@@ -27,11 +27,11 @@ export class AddProductComponent implements OnInit {
 
   //id = Number(this.route.snapshot.paramMap.get('id'));
   profileForm = this.fb.group({
-    name: ['', Validators.required,Validators.nullValidator],
-    category: ['', Validators.required,Validators.nullValidator],
+    name: ['', [Validators.required]],
+    category: ['', [Validators.required,Validators.nullValidator]],
     price: [0, [Validators.required, Validators.min(1)]],
-    image: ['', Validators.required,Validators.nullValidator],
-    description: ['', Validators.required,Validators.nullValidator],
+    image: ['', [Validators.required,Validators.nullValidator]],
+    description: ['', [Validators.required,Validators.nullValidator]],
   });
 
   constructor(
@@ -57,7 +57,9 @@ export class AddProductComponent implements OnInit {
     //   description: this.profileForm.value.description || '',
 
     // };
-    this.product.name = this.profileForm.value.name ?? '';
+    if (this.profileForm.valid)
+    {
+      this.product.name = this.profileForm.value.name ?? '';
     this.product.category = this.profileForm.value.category ?? '';
     this.product.description = this.profileForm.value.description ?? '';
     this.product.price = this.profileForm.value.price ?? 0;
@@ -71,6 +73,7 @@ export class AddProductComponent implements OnInit {
 
       );
       window.alert("The product was added!");
+    }
   }
 
   cancel() {

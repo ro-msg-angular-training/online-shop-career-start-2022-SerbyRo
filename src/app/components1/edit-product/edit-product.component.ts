@@ -27,11 +27,11 @@ export class EditProductComponent implements OnInit {
 
   id = Number(this.route.snapshot.paramMap.get('id'));
   profileForm = this.fb.group({
-    name: ['', Validators.required],
-    category: ['', Validators.required],
+    name: ['', [Validators.required,Validators.nullValidator]],
+    category: ['', [Validators.required,Validators.nullValidator]],
     price: [0, [Validators.required, Validators.min(1)]],
-    image: ['', Validators.required],
-    description: ['', Validators.required],
+    //image: ['', [Validators.required,Validators.nullValidator]],
+    description: ['', [Validators.required,Validators.nullValidator]],
   });
 
   constructor(
@@ -57,11 +57,13 @@ export class EditProductComponent implements OnInit {
     //   description: this.profileForm.value.description || '',
 
     // };
-    this.product.name = this.profileForm.value.name ?? '';
+    if (this.profileForm.valid)
+    {
+      this.product.name = this.profileForm.value.name ?? '';
     this.product.category = this.profileForm.value.category ?? '';
     this.product.description = this.profileForm.value.description ?? '';
     this.product.price = this.profileForm.value.price ?? 0;
-    this.product.image = this.profileForm.value.image ?? '';
+    //this.product.image = this.profileForm.value.image ?? '';
     this.http
       .put(`${'http://localhost:3000'}/products/${this.id}`, this.product)
       .subscribe(()=>{
@@ -70,6 +72,8 @@ export class EditProductComponent implements OnInit {
       }
 
       );
+    }
+    
   }
 
   cancel() {

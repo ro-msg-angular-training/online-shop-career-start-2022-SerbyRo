@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import Product from '../Types/Product';
-
+import { AuthentificationService } from '../authentification.service';
 @Component({
   selector: 'app-list-product-detail',
   templateUrl: './list-product-detail.component.html',
@@ -9,8 +9,8 @@ import Product from '../Types/Product';
 })
 export class ListProductDetailComponent implements OnInit {
   products: Product[] = [];
-
-  constructor(private productService: ProductService) {}
+  canEditProducts: boolean = this.authService.userHasRole('admin');
+  constructor(private productService: ProductService,private authService: AuthentificationService) {}
 
   ngOnInit(): void {
     this.get();
