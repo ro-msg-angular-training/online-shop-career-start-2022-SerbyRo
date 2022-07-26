@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-
   posts: Observable<any> | undefined;
   constructor(private http: HttpClient) {}
 
