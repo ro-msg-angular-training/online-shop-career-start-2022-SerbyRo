@@ -1,7 +1,7 @@
 <main>
   <div class="card">
     <a href="#"></a>
-    <h3>New products</h3>
+    <h3 i18n>New products</h3>
     <br />
     <br />
     <br />
@@ -13,19 +13,20 @@
       type="button"
       [disabled]="!canEditProducts"
       [routerLink]="['/AddProduct']"
+      i18n
     >
       Add this product
     </button>
     <div *ngFor="let product of allProducts$ | async">
-      <h1>{{ product.category }}</h1>
-      <p class="sub">{{ product.name }}</p>
-      <p class="price">${{ product.price }}</p>
+      <h1 i18n>{{ product.category }}</h1>
+      <p class="sub" i18n>{{ product.name }}</p>
+      <p class="price" i18n>${{ product.price }}</p>
       <div class="image">
         <img src="{{ product.image }}" alt="" width="300px" />
       </div>
       <div class="action">
         <button mat-raised-button color="primary" type="button">
-          <a [routerLink]="['/', 'ProductDetail', product.id]"
+          <a [routerLink]="['/', 'ProductDetail', product.id]" i18n
             >View details of the product</a
           >
         </button>

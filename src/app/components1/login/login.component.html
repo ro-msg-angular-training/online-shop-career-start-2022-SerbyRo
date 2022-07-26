@@ -1,18 +1,18 @@
-<title>Login page</title>
+<title i18n>Login page</title>
 
 <form id="login-form" [formGroup]="loginForm">
-  <span id="title"> Hello! Please log in! </span>
+  <span id="title" i18n> Hello! Please log in! </span>
   <br />
   <br />
-  <mat-label for="username">Username: </mat-label>
+  <mat-label for="username" i18n>Username: </mat-label>
   <mat-form-field>
     <input matInput id="username" type="text" formControlName="username" />
   </mat-form-field>
   <br />
   <br />
-  <mat-label for="password">Password: </mat-label>
+  <mat-label for="password" i18n>Password: </mat-label>
   <input id="password" type="password" formControlName="password" />
   <br /><br />
 
-  <button mat-raised-button id="login-button" color="primary" (click)="logIn()">Login my friend</button>
+  <button mat-raised-button id="login-button" color="primary" (click)="logIn()" i18n>Login my friend</button>
 </form>

@@ -20,7 +20,7 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(login),
       mergeMap(({ loginCredentials }) => {
-        return this.authService.login2(loginCredentials).pipe(
+        return this.authService.loginFullUser(loginCredentials).pipe(
           map((user: User) => loginSuccess({ user })),
           catchError((response: HttpErrorResponse) =>
             of(loginFailure({ response }))

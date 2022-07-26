@@ -18,7 +18,7 @@ import { AppState } from 'src/app/store/states/app.state';
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss'],
 })
-export class AddProductComponent implements OnInit {
+export class AddProductComponent {
   product: Product = {
     id: 0,
     description: '',
@@ -47,7 +47,7 @@ export class AddProductComponent implements OnInit {
     private store: Store<AppState>
   ) {}
 
-  ngOnInit(): void {}
+ 
   saveChanges() {
     if (this.profileForm.valid) {
       this.product.name = this.profileForm.value.name ?? '';
@@ -55,14 +55,6 @@ export class AddProductComponent implements OnInit {
       this.product.description = this.profileForm.value.description ?? '';
       this.product.price = this.profileForm.value.price ?? 0;
       this.product.image = this.profileForm.value.image ?? '';
-
-      // this.productService.saveProduct(this.product)
-      //   .subscribe(()=>{
-
-      //     this.router.navigateByUrl('/ProductsList');
-      //   }
-
-      //   );
       this.store.dispatch(addProduct({ product: this.product }));
       window.alert('The product was added!');
     }

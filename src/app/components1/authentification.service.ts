@@ -21,7 +21,7 @@ export class AuthentificationService {
       .pipe(tap((user) => (this.user = user)));
   }
 
-  login2(creds: LoginCredential): Observable<User> {
+  loginFullUser(creds: LoginCredential): Observable<User> {
     return this.http
       .post<User>(`${environment.url}/login`, creds)
       .pipe(tap((user) => (this.user = user)));

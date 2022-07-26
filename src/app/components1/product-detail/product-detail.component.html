@@ -1,13 +1,13 @@
-<p>product-detail works!</p>
+<p i18n>product-detail works!</p>
 
 <main>
   <div class="card" *ngIf="selectedProduct$ | async">
     <a href="#"><i class="fa fa-arrow-left"></i></a>
-    <h3>New products</h3>
+    <h3 i18n>New products</h3>
     <div class="card__body">
-      <h1>{{ product.description }}</h1>
-      <p class="sub">{{ product.name }}</p>
-      <p class="price">${{ product.price }}</p>
+      <h1 i18n>{{ product.description }}</h1>
+      <p class="sub" i18n>{{ product.name }}</p>
+      <p class="price" i18n>${{ product.price }}</p>
       <div class="image">
         <img src="{{ product.image }}" alt="" width="300px" />
       </div>
@@ -21,6 +21,7 @@
         [disabled]="!canAddToCart"
         (click)="addToCart()"
         (click)="onLeave()"
+        i18n
       >
         Add to cart
       </button>
@@ -34,6 +35,7 @@
         [disabled]="!canEditProduct"
         (click)="deleteProdus(product.id)"
         (click)="onLeave()"
+        i18n
       >
         Delete product from the list
       </button>
@@ -46,6 +48,7 @@
         [disabled]="!canEditProduct"
         [routerLink]="['/EditProduct', product.id]"
         (click)="onLeave()"
+        i18n
       >
         Edit this product
       </button>

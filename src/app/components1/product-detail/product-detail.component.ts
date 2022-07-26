@@ -40,7 +40,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     image: '',
   };
 
-  id1: number | undefined;
+  idFromRoute: number | undefined;
 
   selectedProduct$ = this.store.select(selectOneProduct);
 
@@ -48,9 +48,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   canAddToCart: boolean | undefined;
 
   ngOnInit(): void {
-    this.id1 = this.route.snapshot.params['id'];
-    if (this.id1) {
-      this.store.dispatch(findOneProduct({ id: this.id1 }));
+    this.idFromRoute = this.route.snapshot.params['id'];
+    if (this.idFromRoute) {
+      this.store.dispatch(findOneProduct({ id: this.idFromRoute }));
     }
     this.selectedSubscription = this.selectedProduct$.subscribe((product) => {
       if (product) {
@@ -80,18 +80,18 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       this.product.description + ' ' + this.product.name + ' was added to cart!'
     );
     //this.productService.addToCart(this.product.id);
-    this.id1 = parseInt(this.route.snapshot.params['id']);
-    this.store.dispatch(addToCart({ id: this.id1 }));
+    this.idFromRoute = parseInt(this.route.snapshot.params['id']);
+    this.store.dispatch(addToCart({ id: this.idFromRoute }));
   }
 
   deleteProdus(id: number): void {
-    if (this.id1) {
-      this.store.dispatch(deleteProduct({ id: this.id1 }));
-      alert(`The product with ID ${this.id1} has been successfully deleted`);
+    if (this.idFromRoute) {
+      this.store.dispatch(deleteProduct({ id: this.idFromRoute }));
+      alert(`The product with ID ${this.idFromRoute} has been successfully deleted`);
     }
   }
 
   onLeave() {
-    //this.productSubscription?.unsubscribe();
+   
   }
 }

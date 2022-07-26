@@ -11,7 +11,7 @@ import { login } from 'src/app/store/actions/auth.action';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent  {
   loginForm = this.fb.nonNullable.group({
     username: this.fb.control('', Validators.required),
     password: this.fb.control('', Validators.required),
@@ -24,24 +24,14 @@ export class LoginComponent implements OnInit {
     private store: Store<AppState>
   ) {}
 
-  ngOnInit(): void {}
+ 
   logIn(): void {
     if (this.loginForm.valid) {
       const loginCredentials = {
         username: this.loginForm.value.username ?? '',
         password: this.loginForm.value.password ?? '',
       };
-      // this.authService.login(username,password).subscribe(
-      //     {
-      //       next: () => {
-      //         const redirectUrl = this.authService.redirectUrl ?? '/ProductsList';
-      //         this.router.navigateByUrl(redirectUrl);
-      //       },
-      //       error: () => {
-      //         alert('Incorrect credentials! Please try again!');
-      //       },
-      //     }
-      // );
+
       this.store.dispatch(login({ loginCredentials }));
     }
   }

@@ -17,18 +17,14 @@ import { checkout } from 'src/app/store/actions/shopping-cart.action';
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss'],
 })
-export class ShoppingCartComponent implements OnInit {
+export class ShoppingCartComponent {
   
   orders$ = this.store.select(ordersSelector);
   constructor(
     private store: Store<AppState>
   ) {}
 
-  ngOnInit(): void {
-   
-    
-    
-  }
+  
 
   checkout(): void {
     window.alert('Completed order!');
