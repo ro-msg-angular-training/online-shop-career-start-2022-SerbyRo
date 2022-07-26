@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let cartProduct of cartProducts; index as i">
+        <tr *ngFor="let cartProduct of orders$ | async; index as i">
           <td>{{ i + 1 }}</td>
           <td>{{ cartProduct.productId }}</td>
           <td>{{ cartProduct.quantity }}</td>
@@ -21,7 +21,7 @@
     </table>
     <div class="card__footer">
       <div class="action">
-        <button type="button" (click)="checkout()">Make Checkout</button>
+        <button mat-raised-button color="warn" type="button" (click)="checkout()">Make Checkout</button>
       </div>
     </div>
   </div>
